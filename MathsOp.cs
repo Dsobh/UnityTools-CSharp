@@ -35,19 +35,12 @@ namespace Kreddik.UnityUtils.MathsOp
         /// </summary>
         private float angleA, angleB, angleC; //Angles of the triangle
 
-        public RightTriangle(Vector2 a, Vector2 b, Vector2 c) : this()
+        public RightTriangle(Vector2 a, Vector2 c)
         {
             this.pointA = a;
-            this.pointB = b;
+            this.pointB = new Vector2(c.x, a.y);
             this.pointC = c;
-        }
-        public RightTriangle(Vector2 a, Vector2 c) : this(a,c, new Vector2(a.x, c.y)){}
-        
-        /// <summary>
-        /// The class constructor.
-        /// </summary>
-        public RightTriangle()
-        {
+
             sideA = Pythagoras(pointA, pointB);
             sideB = Pythagoras(pointB, pointC);
             hypotenuse = Pythagoras(pointA, pointC);
@@ -65,12 +58,10 @@ namespace Kreddik.UnityUtils.MathsOp
         /// <param name="destination">Point of destination</param>
         /// <returns>Distance (in float) between two points</returns>    
         public float Pythagoras(Vector2 origin, Vector2 destination)
-        {
-            Debug.Log("Estoy en este método");
-            
-            float a = System.Mathf.Abs(destination.x - origin.x);
-            float b = System.Mathf.Abs(destination.y - origin.y);
-            return System.Mathf.Sqrt(System.Mathf.Pow(a, 2) + System.Mathf.Pow(b, 2));
+        { 
+            float a = Mathf.Abs(destination.x - origin.x);
+            float b = Mathf.Abs(destination.y - origin.y);
+            return Mathf.Sqrt(Mathf.Pow(a, 2) + Mathf.Pow(b, 2));
         }
 
         /// <summary>
@@ -82,7 +73,7 @@ namespace Kreddik.UnityUtils.MathsOp
         /// <returns>Calculated angle in Degrees</returns>
         public float CalculateAngle(float side1, float side2) //c/b
         {
-            return System.Mathf.Rad2Deg * Mathf.Acos(side1 / side2);
+            return Mathf.Rad2Deg * Mathf.Acos(side1 / side2);
         }
 
         //Getters --------------------------------------------------------------------
